@@ -15,10 +15,10 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (firstname, lastname, email, username)
 VALUES
-('Jarbie', 'De Leon', 'jarbie@example.com', 'dyarbe'),
-('Mark James', 'Belen', 'james@example.com', 'dyems'),
-('Dylan Andrew', 'Danar', 'dylan@example.com', 'Dylan'),
-('Roy Jr.', 'Flauta', 'Roi@example.com', 'balong'),
-('Russel', 'Militar', 'russel@example.com', 'russel');
+('Larissa', 'Galan', 'jarbie@example.com', 'dyarbe'),
+('Sabina', 'Elumba', 'james@example.com', 'dyems'),
+('Jeorge', 'Slaying', 'dylan@example.com', 'Dylan'),
+('Wasabi', 'Na', 'Roi@example.com', 'balong'),
+('Issa', 'Milley', 'russel@example.com', 'russel');
 
 SELECT * FROM users;
