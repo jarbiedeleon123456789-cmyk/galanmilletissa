@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+
+runtime/*
+!runtime/index.html
+
+*.log
+ca.pem
+vendor/
