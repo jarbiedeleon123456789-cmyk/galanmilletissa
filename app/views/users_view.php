@@ -67,7 +67,7 @@
 <body>
     <main class="shell">
         <nav class="topbar" aria-label="Main navigation">
-            <a class="brand" href="<?= htmlspecialchars(base_url()) ?>">
+            <a class="brand" href="/">
                 <span class="mark">↗</span><span>LavaLust</span>
             </a>
             <div class="status"><i></i> Directory online</div>
