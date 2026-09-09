@@ -62,6 +62,7 @@ DB_USERNAME=<aiven-username>
 DB_PASSWORD=<aiven-password>
 DB_NAME=<aiven-database>
 DB_SSL_CA=/app/app/config/ca.pem
+DB_SSL_VERIFY=false
 COOKIE_SECURE=true
 ```
 

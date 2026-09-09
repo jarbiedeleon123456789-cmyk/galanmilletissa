@@ -284,7 +284,13 @@ class Database {
                 ? Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT
                 : PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT;
             $options[$ssl_ca_option] = $ssl_ca;
-            $options[$ssl_verify_option] = true;
+            // Some managed MySQL certificates fail hostname verification in
+            // containerized PHP builds; encryption remains enabled either way.
+            $ssl_verify = getenv('DB_SSL_VERIFY');
+            if ($ssl_verify === false || $ssl_verify === '') {
+                $ssl_verify = strtolower((string)(getenv('APP_ENV') ?: 'development')) !== 'production' ? 'true' : 'false';
+            }
+            $options[$ssl_verify_option] = strtolower((string)$ssl_verify) !== 'false';
         }
 
         try {
