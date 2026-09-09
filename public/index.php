@@ -78,6 +78,28 @@ define('SYSTEM_DIR', ROOT_DIR . $system_path . DIRECTORY_SEPARATOR);
 define('APP_DIR', ROOT_DIR . $application_folder . DIRECTORY_SEPARATOR);
 define('PUBLIC_DIR', $public_folder);
 
+// Load local environment values without overriding deployment variables.
+$env_file = ROOT_DIR . '.env';
+if (is_readable($env_file)) {
+	foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $env_line) {
+		$env_line = trim($env_line);
+		if ($env_line === '' || $env_line[0] === '#' || strpos($env_line, '=') === false) {
+			continue;
+		}
+
+		[$env_name, $env_value] = explode('=', $env_line, 2);
+		$env_name = trim($env_name);
+		$env_value = trim($env_value);
+		if (strlen($env_value) >= 2 && (($env_value[0] === '"' && substr($env_value, -1) === '"') || ($env_value[0] === "'" && substr($env_value, -1) === "'"))) {
+			$env_value = substr($env_value, 1, -1);
+		}
+		if ($env_name !== '' && getenv($env_name) === false) {
+			putenv($env_name . '=' . $env_value);
+			$_ENV[$env_name] = $env_value;
+		}
+	}
+}
+
 /*
  * ------------------------------------------------------
  * Setup done? Then Hurray!

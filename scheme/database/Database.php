@@ -276,8 +276,15 @@ class Database {
             : null;
 
         if ($driver === 'mysql' && $ssl_ca) {
-            $options[PDO::MYSQL_ATTR_SSL_CA] = $ssl_ca;
-            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+            // PHP 8.5 moved these constants from PDO to Pdo\Mysql.
+            $ssl_ca_option = defined('Pdo\\Mysql::ATTR_SSL_CA')
+                ? Pdo\Mysql::ATTR_SSL_CA
+                : PDO::MYSQL_ATTR_SSL_CA;
+            $ssl_verify_option = defined('Pdo\\Mysql::ATTR_SSL_VERIFY_SERVER_CERT')
+                ? Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT
+                : PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT;
+            $options[$ssl_ca_option] = $ssl_ca;
+            $options[$ssl_verify_option] = true;
         }
 
         try {

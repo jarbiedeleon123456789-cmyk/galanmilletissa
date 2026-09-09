@@ -9,6 +9,16 @@ class UsersController extends Controller
         $this->call->model('UsersModel');
     }
 
+    public function before_action()
+    {
+        if (!$this->session->userdata('authenticated')) {
+            redirect('/login');
+        }
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('/products');
+        }
+    }
+
     public function index()
     {
         $users = $this->UsersModel->all();
