@@ -70,7 +70,12 @@ $database['main'] = array(
     'path'      => '',
     // Optional: path to the CA certificate for SSL connections
     // (e.g. Aiven's ca.pem). Leave blank for a local MySQL server.
-    'ssl_ca'    => getenv('DB_SSL_CA') ?: ''
+    'ssl_ca'    => (function () {
+        $configured_ca = getenv('DB_SSL_CA') ?: '';
+        $bundled_ca = APP_DIR . 'config' . DIRECTORY_SEPARATOR . 'ca.pem';
+
+        return is_file($configured_ca) ? $configured_ca : (is_file($bundled_ca) ? $bundled_ca : '');
+    })()
 );
 
 ?>

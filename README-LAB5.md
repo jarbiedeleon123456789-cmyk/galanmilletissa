@@ -61,8 +61,8 @@ DB_PORT=<aiven-port>
 DB_USERNAME=<aiven-username>
 DB_PASSWORD=<aiven-password>
 DB_NAME=<aiven-database>
-DB_SSL_CA=<path only if the certificate is included in the deployment>
+DB_SSL_CA=/app/app/config/ca.pem
 COOKIE_SECURE=true
 ```
 
-The included `Dockerfile` starts LavaLust on Render's `$PORT` and installs `pdo_mysql`.
+The Aiven CA certificate is bundled at `app/config/ca.pem`; the application also falls back to that file when `DB_SSL_CA` contains a local Windows path. The included `Dockerfile` starts LavaLust on Render's `$PORT` and installs `pdo_mysql`.

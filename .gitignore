@@ -7,4 +7,5 @@ runtime/*
 
 *.log
 ca.pem
+!app/config/ca.pem
 vendor/
