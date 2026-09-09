@@ -18,8 +18,8 @@ Every product route is protected by the session check in `ProductController::bef
 1. Create the Aiven MySQL service and database.
 2. Open `sql/lab5_setup.sql` in Navicat and run it against `defaultdb`. The script supports both a fresh database and the existing Lab 4 users table.
 3. Demo accounts:
-	- Admin: username `dyarbe`, password `admin123` - full product CRUD and user creation.
-	- Viewer: username `viewer`, password `user12345` - product list access only.
+	- Admin: username `admin`, password `123` - full product CRUD and user creation.
+	- User: username `user`, password `123` - product list access only.
 	Change both passwords before production use.
 4. Confirm the `products` table and starter rows in Navicat.
 
